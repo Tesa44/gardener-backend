@@ -176,6 +176,11 @@ Responses
 
     Authorization: Bearer <your_token_here>
 
+## Database and Security
+  This API uses a MySQL database hosted online on the Aiven platform.
+
+  API requests are restricted and blocked for unauthorized origins. Only requests coming from the official frontend application are allowed to access the API endpoints, ensuring secure and controlled usage.
+
 ## Notes
 
     Dates/timestamps are typically in ISO 8601 format.
