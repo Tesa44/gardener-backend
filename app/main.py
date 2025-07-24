@@ -20,9 +20,14 @@ app.include_router(resources.router, prefix="/resources", tags=["Resources"])
 def root():
     return {"message": "Gardener API is running"}
 
+origins = [
+    "https://gardener-frontend.vercel.app",
+    "http://localhost:3000",  # Opcjonalnie, do testów lokalnych
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # lub ["*"] do testów
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
