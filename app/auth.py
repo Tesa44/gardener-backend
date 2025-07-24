@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import os
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
-from database import get_connection
+from app.database import get_connection
 
 # Załaduj zmienne z .env
 load_dotenv()
@@ -18,25 +18,6 @@ ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("JWT_EXP_MINUTES"))
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/users/login")
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-# Dekodowanie tokenu JWT i wyciąganie user_id
-# def get_current_user(token: str = Depends(oauth2_scheme)):
-#     credentials_exception = HTTPException(
-#         status_code=status.HTTP_401_UNAUTHORIZED,
-#         detail="Invalid authentication credentials",
-#         headers={"WWW-Authenticate": "Bearer"},
-#     )
-
-#     try:
-#         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-#         user_id = payload.get("user_id")
-#         if user_id is None:
-#             raise credentials_exception
-#     except JWTError:
-#         raise credentials_exception
-
-#     return {"id": user_id}
-
 
 def get_current_user(token: str = Depends(oauth2_scheme)):
 
@@ -66,7 +47,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
     if user is None:
         raise credentials_exception
 
-    return user  # np. { "id": 1, "email": "jan@example.com" }
+    return user
 
 
 def hash_password(password: str):

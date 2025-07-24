@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Request
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
-from database import get_connection
-from auth import hash_password, verify_password, create_access_token, SECRET_KEY, ALGORITHM
+from app.database import get_connection
+from app.auth import hash_password, verify_password, create_access_token, SECRET_KEY, ALGORITHM
 from pydantic import BaseModel
 
 router = APIRouter()

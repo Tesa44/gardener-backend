@@ -1,7 +1,14 @@
 from fastapi import FastAPI
-from routers import users, resources
+from app.routers import users, resources
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
+
+CA_CERT_PATH = "/tmp/ca.pem"
+
+# Pobranie zawartości certyfikatu z ENV i zapisanie do pliku
+with open(CA_CERT_PATH, "w") as f:
+    f.write(os.environ.get("DB_SSL_CA", ""))
 
 app = FastAPI()
 
