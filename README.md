@@ -6,6 +6,10 @@ This document describes the available endpoints for the **Users** and **Resource
 
 ## Base URLs
 
+All API endpoints are relative to the following base URL:
+ - `https://gardener-backend-owo6.onrender.com`
+
+### Routers
 - **Users API base:** `/users`
 - **Resources API base:** `/resources`
 
